@@ -1,0 +1,86 @@
+:root {
+  --bg: #eff1f4;
+  --panel: #d9dde3;
+  --accent: #f59e0b;
+  --accent-dark: #d97706;
+  --text: #101011;
+  --muted: #d1d5db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #bec3cf, #1e3a8a);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+#game-container,
+.game-container {
+  width: min(90%, 700px);
+  background: rgba(139, 148, 159, 0.95);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(242, 240, 240, 0.35);
+}
+
+h1,
+#title {
+  margin-top: 0;
+  color: var(--accent);
+  text-align: center;
+}
+
+#story,
+.story {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  line-height: 1.6;
+  min-height: 140px;
+  margin-bottom: 16px;
+}
+
+#choices,
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button,
+.choice-btn {
+  background: var(--accent);
+  color: #121111;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover,
+.choice-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+#inventory,
+.inventory {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+#inventory strong,
+.inventory strong {
+  color: var(--accent);
+}

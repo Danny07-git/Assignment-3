@@ -1,144 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simple Adventure Game</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #1b2a3b;
-      color: #f0f3f5;
-    }
-    .game-container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #273845;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-    }
-    h1 {
-      margin-top: 0;
-    }
-    .actions {
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    button {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 6px;
-      background: #4c7a9a;
-      color: #f0f3f5;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    button:hover {
-      background: #648cb4;
-    }
-    #story {
-      line-height: 1.6;
-      min-height: 120px;
-      white-space: pre-line;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>City of Echoes Adventure</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="game-container">
-    <h1>Adventure Game</h1>
-    <div id="story">Welcome to your adventure. Choose what to do first.</div>
-    <div class="actions" id="actionButtons"></div>
-  </div>
+    <main id="game-container" role="main" aria-labelledby="game-title">
+        <h1 id="game-title">City of Echoes Adventure</h1>
 
-  <script>
-    const story = document.getElementById('story');
-    const actionButtons = document.getElementById('actionButtons');
+        <section id="story-section" aria-live="polite">
+            <p id="question">Your adventure begins now...</p>
+        </section>
 
-    const scenes = {
-      start: {
-        text: 'You stand at the edge of a dark forest. A path leads north, and a small village lies to the east. What will you do?',
-        options: [
-          { label: 'Enter the forest', next: 'forest' },
-          { label: 'Visit the village', next: 'village' },
-          { label: 'Rest here', next: 'rest' }
-        ]
-      },
-      forest: {
-        text: 'The forest is quiet and misty. You see a glowing stone on the ground and a narrow trail deeper into the trees.',
-        options: [
-          { label: 'Pick up the stone', next: 'stone' },
-          { label: 'Follow the trail', next: 'trail' },
-          { label: 'Return to the edge', next: 'start' }
-        ]
-      },
-      village: {
-        text: 'The villagers greet you warmly. A shopkeeper offers you a potion, while a child asks for help finding a lost cat.',
-        options: [
-          { label: 'Buy the potion', next: 'potion' },
-          { label: 'Help find the cat', next: 'cat' },
-          { label: 'Go back', next: 'start' }
-        ]
-      },
-      rest: {
-        text: 'You sit down and rest for a while. The evening settles in, and you feel refreshed. You can continue your adventure when ready.',
-        options: [
-          { label: 'Continue', next: 'start' }
-        ]
-      },
-      stone: {
-        text: 'The stone glows warmly in your hand. Your courage increases. You can now explore deeper or return.',
-        options: [
-          { label: 'Go deeper', next: 'trail' },
-          { label: 'Return to the edge', next: 'start' }
-        ]
-      },
-      trail: {
-        text: 'You follow the trail and discover a hidden clearing with a treasure chest. It might be trapped.',
-        options: [
-          { label: 'Open the chest', next: 'treasure' },
-          { label: 'Leave it alone', next: 'forest' }
-        ]
-      },
-      potion: {
-        text: 'The potion restores your health and sharpens your senses. You feel ready for any challenge.',
-        options: [
-          { label: 'Return to the forest', next: 'forest' },
-          { label: 'Explore more village options', next: 'village' }
-        ]
-      },
-      cat: {
-        text: 'You find the cat hiding beneath a cart. The child thanks you and gives you a small charm for luck.',
-        options: [
-          { label: 'Go to the forest', next: 'forest' },
-          { label: 'Return to the start', next: 'start' }
-        ]
-      },
-      treasure: {
-        text: 'You open the chest and find a golden map. Your adventure continues from here with new mysteries ahead.',
-        options: [
-          { label: 'Play again', next: 'start' }
-        ]
-      }
-    };
+        <section aria-label="Available choices">
+            <ul id="answers" role="list">
+                <!-- Answer buttons will be injected here by JavaScript -->
+            </ul>
+        </section>
 
-    function renderScene(sceneKey) {
-      const scene = scenes[sceneKey];
-      story.textContent = scene.text;
-      actionButtons.innerHTML = '';
-      scene.options.forEach(option => {
-        const button = document.createElement('button');
-        button.textContent = option.label;
-        button.addEventListener('click', () => renderScene(option.next));
-        actionButtons.appendChild(button);
-      });
-    }
+        <button id="next-btn" type="button">
+            Next
+        </button>
+    </main>
 
-    renderScene('start');
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
